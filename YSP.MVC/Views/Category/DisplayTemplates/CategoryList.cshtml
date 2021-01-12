@@ -1,0 +1,30 @@
+﻿@*@using YSP.Core.Models*@
+@model Category
+
+@{
+    ViewData["Title"] = "InventoryList";
+}
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Parent.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.AddDate)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.TimeStamp)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.IsActive)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    </td>
+</tr>
+

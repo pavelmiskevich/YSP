@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "YSP.RabbitMQ.PublicherWorkerService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

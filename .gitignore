@@ -1,0 +1,4 @@
+*.dll
+*.cache
+bin
+obj

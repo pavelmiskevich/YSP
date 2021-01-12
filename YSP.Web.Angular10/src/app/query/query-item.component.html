@@ -1,0 +1,18 @@
+<h5 class="card-header">
+    {{query.name}}
+    <input class="pull-xs-right" type="checkbox" [checked]="query.isActive" [title]="query.isActive" (click)="deactivate(query)" />
+    <span class="pull-xs-right" (click)="deactivate(query)"></span>
+</h5>        
+<div class="card-text p-a-1">
+    <!-- {{'&nbsp;'}} -->
+    Проверено: {{query.LastCheck}}
+    <button class="btn btn-outline-secondary btn-sm pull-xs-right" [hidden]="!isAuth" (click)="delete(query)"> 
+        Удалить
+    </button>
+    <button class="btn btn-outline-secondary btn-sm pull-xs-right" [disabled]="!isAuth" routerLink="/categoryEdit"> 
+        Редактировать
+    </button>
+    <button class="btn btn-outline-primary btn-sm pull-xs-right" [routerLink]="['/position', query.id]"> 
+        Позиции
+    </button>    
+</div>

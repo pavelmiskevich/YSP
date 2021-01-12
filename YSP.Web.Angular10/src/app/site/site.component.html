@@ -1,0 +1,63 @@
+<div class="navbar navbar-inverse bg-inverse">   
+    <a class="navbar-brand">YSP</a>   
+    <cart-summary></cart-summary>
+</div>
+<top-menu></top-menu>
+<div class="col-sm-3 p-a-1">
+    <button class="btn btn-primary btn-block" routerLink="/category"> 
+        Добавить сайт 
+    </button>
+    <button *ngFor="let cat of categories" class="btn btn-outline-primary btn-block"
+            [class.active]="cat == selectedCategory" (click)="changeCategory(cat)" [class.active]="cat == selectedCategory">
+        <!-- {{cat.name.substring(0,24)}} -->
+        {{cat.name | cutText : 24}}
+    </button>
+    <button class="btn btn-success btn-block" (click)="changeCategory(null)"> 
+        Все категории
+    </button>
+</div>
+<div class="col-sm-6 p-a-1">
+    <div *ngFor="let site of sites" class="card card-outline-primary">
+        <h5 class="card-header">
+            {{site.id}} {{site.url}} ({{site.region.name}})
+            <input class="pull-xs-right" type="checkbox" [checked]="site.isActive" [title]="site.isActive" (click)="deactivateSite(site)" />
+            <span class="pull-xs-right" (click)="deactivateSite(site)"></span>
+        </h5>        
+        <div class="card-text p-a-1">
+            {{site.name ? site.name : '&nbsp;'}}
+            <button class="btn btn-outline-secondary btn-sm pull-xs-right" [hidden]="!isAuth" (click)="deleteSite(site.id)"> 
+                Удалить
+            </button>
+            <button class="btn btn-outline-secondary btn-sm pull-xs-right" [disabled]="!isAuth" routerLink="/siteEdit"> 
+                Редактировать
+            </button>
+            <button class="btn btn-outline-primary btn-sm pull-xs-right" [routerLink]="['/query', site.id]"> 
+                Запросы
+            </button>
+            <!-- <button class="btn btn-outline-primary btn-sm pull-xs-right" routerLink="/query"> 
+                Запросы
+            </button> -->
+            <button class="btn btn-outline-primary btn-sm pull-xs-right" [routerLink]="['position', site]"> 
+                Позиции
+            </button>
+        </div>        
+    </div>
+    <div class="form-inline pull-xs-left m-r-1"> 
+        <select class="form-control" [value]="sitesPerPage"  
+                (change)="changePageSize($event.target.value)"> 
+            <option value="3">3 на странице</option>
+            <option value="4">4 на странице</option>
+            <option value="6">6 на странице</option>
+            <option value="8">8 на странице</option>
+        </select>
+    </div>
+    <div class="btn-group pull-xs-right"> 
+        <button *counter="let page of pageCount" (click)="changePage(page)"        
+            class="btn btn-outline-primary" [class.active]="page == selectedPage"> 
+                {{page}}
+        </button>
+    </div>
+</div>
+<div class="col-sm-3 p-a-1">
+    <app-new-site></app-new-site>
+</div>

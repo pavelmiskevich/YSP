@@ -1,0 +1,34 @@
+//https://www.webdraftt.com/tutorial/angular-cli
+
+ng g component my-app1 --prefix --flat
+Параметр --prefix указывает префикс генерируемых сущностей (по умолчанию app). Если указать его без значения, то префикс будет опущен
+Параметр --flat указывает, что для генерируемой сущности не будет создана директория и все файлы будут помещены в то место, откуда была вызвана команда.
+ng g component category --prefix
+ng g c site --prefix
+ng g c query --prefix
+ng g c position --prefix
+ng g c summary --prefix
+
+cd D:\Projects\YSP\BRANCHCOMP\YSP.Web.Angular10\src\app
+ng g c admin --prefix
+cd D:\Projects\YSP\BRANCHCOMP\YSP.Web.Angular10\src\app\admin
+ng g c auth --prefix --flat
+
+
+ng g c newQuery --prefix --flat
+
+ng g c menu --prefix
+
+cd C:\Projects\YSP\YSP\BRANCHCOMP\YSP.Web.Angular10\src\app\category
+
+ng g c category-list --prefix --flat
+ng g c category-item --prefix --flat
+ng g c new-category --prefix --flat
+
+cd C:\Projects\YSP\YSP\BRANCHCOMP\YSP.Web.Angular10\src\app\site
+
+ng g c site-list --prefix --flat
+ng g c site-item --prefix --flat
+ng g c new-site --prefix --flat
+
+cd C:\Projects\YSP\YSP\BRANCHCOMP\YSP.Web.Angular10\

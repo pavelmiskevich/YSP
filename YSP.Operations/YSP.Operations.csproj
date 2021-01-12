@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YSP.Data\YSP.Data.csproj" />
+    <ProjectReference Include="..\YSP.Search.Core\YSP.Search.Core.csproj" />
+    <ProjectReference Include="..\YSP.Services\YSP.Services.csproj" />
+  </ItemGroup>
+
+</Project>

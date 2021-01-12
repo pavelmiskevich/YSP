@@ -1,0 +1,11 @@
+<div class="pull-xs-right navbar-brand">
+    <!-- <small> -->        
+        {{summary.name ? 'В категории ' + summary.name : 'Всего найденно'}}:        
+        <span *ngIf="summary.itemCount > 0">
+            {{ summary.itemCount }}
+        </span>
+        <span *ngIf="summary.itemCount == 0">
+            Записей не найдено
+        </span>
+    <!-- </small> -->
+</div>

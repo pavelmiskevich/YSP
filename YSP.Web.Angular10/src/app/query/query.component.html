@@ -1,0 +1,54 @@
+<div class="navbar navbar-inverse bg-inverse">   
+    <a class="navbar-brand">YSP</a>   
+    <cart-summary></cart-summary>
+</div>
+<top-menu></top-menu>
+<div class="col-sm-3 p-a-1">
+    <button *ngFor="let site of sites | orderBy: order : false" class="btn btn-outline-primary btn-block"
+            [class.active]="site == selectedSite" (click)="changeSite(site)" [class.active]="site == selectedsite">
+        {{site.url}}
+    </button>
+</div>
+<div class="col-sm-6 p-a-1">
+    <!-- <div *ngFor="let query of queries | orderBy: order : false" class="card card-outline-primary"> -->
+    <!-- <button (click)="add()">Add</button>
+    <app-queries [queries]="queries"></app-queries> -->
+    <div *ngFor="let query of queries" class="card card-outline-primary">
+        <h5 class="card-header">
+            {{query.id}} {{query.name}}
+            <input class="pull-xs-right" type="checkbox" [checked]="query.isActive" [title]="query.isActive" (click)="deactivate(query)" />
+            <span class="pull-xs-right" (click)="deactivate(query)"></span>
+        </h5>        
+        <div class="card-text p-a-1">
+            Проверено: {{query.LastCheck}}            
+            <button class="btn btn-outline-secondary btn-sm pull-xs-right" [hidden]="!isAuth" (click)="delete(query)"> 
+                Удалить
+            </button>
+            <!-- <button class="btn btn-outline-secondary btn-sm pull-xs-right" [disabled]="!isAuth" routerLink="/queryEdit"> 
+                Редактировать
+            </button>             -->
+            <button class="btn btn-outline-primary btn-sm pull-xs-right" [routerLink]="['/position', query.id]"> 
+                Позиции
+            </button>
+        </div>
+    </div>
+    <div class="form-inline pull-xs-left m-r-1"> 
+        <select class="form-control" [value]="sitesPerPage"  
+                (change)="changePageSize($event.target.value)"> 
+            <option value="3">3 на странице</option>
+            <option value="4">4 на странице</option>
+            <option value="6">6 на странице</option>
+            <option value="8">8 на странице</option>
+        </select>
+    </div>
+    <div class="btn-group pull-xs-right"> 
+        <button *counter="let page of pageCount" (click)="changePage(page)"        
+            class="btn btn-outline-primary" [class.active]="page == selectedPage"> 
+                {{page}}
+        </button>
+    </div>
+</div>
+<div class="col-sm-3 p-a-1">
+    <app-new-query [queries]="queries"></app-new-query>
+</div>
+

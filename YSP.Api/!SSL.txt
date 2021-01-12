@@ -1,0 +1,17 @@
+https://winitpro.ru/index.php/2015/12/28/kak-sozdat-samopodpisannyj-sertifikat-v-windows/
+
+Поиск - certlm.msc
+
+PS C:\Windows\system32> New-SelfSignedCertificate -DnsName localhost -CertStoreLocation cert:\LocalMachine\My
+   PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
+Thumbprint                                Subject
+----------                                -------
+F0C5C3EF2CD3878450EBD6EE95102A03C571D02C  CN=localhost
+
+Export-Certificate -Cert Cert:\LocalMachine\My\F0C5C3EF2CD3878450EBD6EE95102A03C571D02C -FilePath C:\testcert.crt
+
+////////
+RUN pip install --cert /etc/ssl/certs/testcert.pem
+
+//lets-encrypt
+//https://winitpro.ru/index.php/2017/11/03/ustanovka-besplatnogo-ssl-sertifikata-lets-encrypt-na-iis-v-windows-server-2012-r2/

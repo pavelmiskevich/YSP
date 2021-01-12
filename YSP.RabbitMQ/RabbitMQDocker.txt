@@ -1,0 +1,29 @@
+https://m.habr.com/ru/post/486416/
+
+//This will start a RabbitMQ container listening on the default port of 5672
+docker run -d --hostname my-rabbit --name ysp-rabbit rabbitmq:3
+//on the standard management port of 15672, with the default username and password of guest / guest
+//You can access it by visiting http://container-ip:15672
+docker run -d --hostname my-rabbit --name ysp-rabbit rabbitmq:3-management
+
+//access outside the host, on port 8080
+//go to http://localhost:8080 or http://host-ip:8080 in a browser
+docker run -d --hostname my-rabbit --name ysp-rabbit -p 8672:15672 rabbitmq:3-management
+docker run -d --hostname my-rabbit --name ysp-rabbit -p 15672:15672 rabbitmq:3-management
+docker run -it --rm --name ysp-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+http://localhost:8672
+
+//Setting default user and password
+docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+
+
+docker logs ysp-rabbit
+
+cd C:\Projects\YSP\YSP\YSP.RabbitMQ\PublisherWeb
+//dotnet run -h
+dotnet run
+
+http://localhost:5000/
+https://localhost:5001/
+
+cd C:\Projects\YSP\YSP\YSP.RabbitMQ\SubscriberWeb

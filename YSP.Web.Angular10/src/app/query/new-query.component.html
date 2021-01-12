@@ -1,0 +1,27 @@
+<div *ngIf="newQuery" class="text-xs-center">
+    <h4 class="navbar navbar-inverse success">Запрос добавлен</h4>
+    <!-- <p>Thanks for placing your order.</p>
+    <p>We'll ship your goods as soon as possible.</p> -->
+    <!-- <button class="btn btn-primary" routerLink="/store">Return to Store</button> -->
+</div>
+<form *ngIf="!newQuery" #form="ngForm" novalidate
+      (ngSubmit)="submitQuery(form)" class="card card-outline-primary p-a-1">
+    <h4 class="navbar navbar-inverse text-xs-center">Новый запрос</h4>
+    <div class="form-group">
+        <label>Название</label>
+        <input class="form-control" #name="ngModel" name="name"
+               [(ngModel)]="query.name" required />
+        <span  *ngIf="submitted && name.invalid" class="text-danger">
+            Поисковая фраза обязательна
+        </span>
+        <!-- <input class="form-control" #name="ngModel" name="queryName"
+               [(ngModel)]="queryName" required />
+        <span  *ngIf="submitted && queryName.invalid" class="text-danger">
+            Поисковая фраза обязательна
+        </span> -->
+    </div>        
+    <div class="text-xs-center">
+        <!-- <button class="btn btn-secondary" routerLink="/cart">Очистить</button> -->
+        <button class="btn btn-outline-primary btn-sm" type="submit">Добавить</button>
+    </div>
+</form>

@@ -1,0 +1,53 @@
+* { box-sizing: border-box; }
+input[type=checkbox] { display: none; }
+.card-header span {
+    position: relative;
+    /* height: 38px; line-height: 36px;  */
+    /* margin: 4px; padding: 0px 4px 0px 8px; */
+    display: inline-block; cursor: pointer;
+    /* border: 1px solid #aaa; border-radius: 5px; */
+    font-family: helvetica, sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.card-header span::before {    
+    top: 0px; right: 32px;
+    height: 36px; width: 2px;
+    border-left: 1px solid #aaa;
+}
+.card-header span::after {
+    content: '\2713'; text-align: center;
+    /* margin-left: 12px;  */
+    display: inline-block; border-radius: 4px;
+    border: 1px dashed #999;
+    height: 26px; line-height: 24px; width: 24px;
+    background-color: #FF0000;
+    color: #fff;
+}
+.card-header span:hover::after {
+    content: '\2713'; text-align: center;
+    /* margin-left: 12px;  */
+    display: inline-block; border-radius: 4px;
+    border: 1px dashed #999;
+    height: 26px; line-height: 24px; width: 24px;
+    background-color: #CCCC00;
+    color: #0033CC;
+}
+
+input[type=checkbox]:checked + span {    
+    color: #4575ab;
+}
+input[type=checkbox]:checked + span::after {
+    border: 1px solid #4575ab; 
+    background-color: #66CC66;
+    color: #fff;    
+}
+input[type=checkbox]:checked + span:hover::after {
+    background-color: #CCCC00;
+    color: #0033CC;
+}
+input[type=checkbox]:checked + span::before {
+    border-left: 1px solid #4575ab;
+}

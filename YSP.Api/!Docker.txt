@@ -1,0 +1,24 @@
+//Dockerfile
+cd D:\Projects\YSP\BRANCHCOMP
+cd C:\Projects\YSP\YSP\BRANCHCOMP
+
+docker build -t example1 .
+docker build -t ysp_webapi .
+docker build -t webapitest YSP.Api
+
+//проверка
+docker run -d -p 1433:1433 example1
+docker run -d -p 5001:5001 webapitest
+docker run -d -p 5555:5001 --name myapp webapitest
+docker run -d -p 5550:5000 -p 5551:5001 --name myapp webapitest
+docker run -d -p 8080:80 --name myapp webapitest
+docker run -d -p 8080:80 --name myapp ysp_webapi
+docker run -d -p 8080:80 -p 5551:5001 --name myapp webapitest
+docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myapp
+docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" webapitest
+
+//наличие сообщений об ошибках от контейнера
+docker logs 7464ab9a6c11    
+
+//запустить терминал Bash в контейнере
+docker exec -it 7464ab9a6c11 /bin/bash

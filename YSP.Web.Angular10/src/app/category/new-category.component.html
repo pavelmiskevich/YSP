@@ -1,0 +1,45 @@
+<!-- <div class="text-xs-center">
+    <button class="btn btn-outline-primary btn-sm" (click)="add()">Добавить</button>
+</div> -->
+<!-- <div *ngIf="newCategory" class="text-xs-center">
+    <h4 class="navbar navbar-inverse success">Категория {{category.name}} добавлена</h4>    
+</div> -->
+<form #form="ngForm" novalidate
+      (ngSubmit)="submit(form)" class="card card-outline-primary p-a-1">
+    <h4 class="navbar navbar-inverse text-xs-center">Новая категория</h4>
+    <div class="form-group">
+        <label>Название</label>
+        <input class="form-control" #name="ngModel" name="name"
+               [(ngModel)]="category.name" max="250" required />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+            <div *ngIf="name.errors.required">
+                Поле обязательно к заполнению
+            </div>
+            <div *ngIf="name.errors.max">
+                Максимальная длина 250 символов
+            </div>
+        </div>
+        <!-- <span  *ngIf="submitted && name.invalid" class="text-danger">
+            Название категории обязательно
+        </span> -->
+
+        <!-- <span  *ngIf="submitted && !name.invalid" class="text-success">
+            Категория добавлена
+        </span> -->
+        <label for="parent">Родительская категория</label>
+        <select name="parent" class="form-control" [(ngModel)]="category.parentId">
+            <option disabled>Выбрать категорию</option>
+            <option [ngValue]="null">Без родителя</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat.id">{{cat.name | cutText : 30}}</option>
+        </select>
+        <!-- <input class="form-control" #name="ngModel" name="queryName"
+               [(ngModel)]="queryName" required />
+        <span  *ngIf="submitted && queryName.invalid" class="text-danger">
+            Поисковая фраза обязательна
+        </span> -->
+    </div>        
+    <div class="text-xs-center">
+        <!-- <button class="btn btn-secondary" routerLink="/cart">Очистить</button> -->
+        <button class="btn btn-outline-primary btn-sm" type="submit" [disabled]="!form.valid">Добавить</button>
+    </div>
+</form>

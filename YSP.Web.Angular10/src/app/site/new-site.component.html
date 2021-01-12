@@ -1,0 +1,75 @@
+<div *ngIf="newSite" class="text-xs-center">
+    <h4 class="navbar navbar-inverse success">Сайт {{f.url.value}} добавлен</h4>    
+</div>
+<form *ngIf="!newSite" [formGroup]="newSiteForm" (ngSubmit)="submit()" novalidate
+    class="card card-outline-primary p-a-1 navbar navbar-inverse">
+    <h4 class="navbar navbar-inverse text-xs-center">Новый сайт</h4>
+    <div>
+        <label>ID</label>
+        <input class="form-control" type="number" formControlName="id" />
+    </div>
+    <div>
+        <label>URL</label>
+        <input class="form-control" type="text" formControlName="url" />
+        <div *ngIf="f.url.touched && f.url.invalid" class="text-danger">
+            <div *ngIf="f.url.errors.required">URL обязателен.</div>
+            <div *ngIf="f.url.errors.pattern">Непохоже на URL.</div>
+            <div *ngIf="f.url.getError('existUrl')">{{f.url.getError('existUrl')}}</div>
+        </div>
+    </div>  
+    <div>
+        <label>Название</label>
+        <input class="form-control" type="text" formControlName="name" />
+    </div>
+    <div>
+        <label>Описание</label>
+        <input class="form-control" type="text" formControlName="descr" />
+    </div>
+    <div>
+        <label>Категория</label>
+        <select class="form-control" formControlName="categoryId">
+            <option value="">Выберите категорию</option>
+            <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name | cutText : 30}}</option>
+        </select>
+        <!-- <input class="form-control" type="text" formControlName="category" /> -->
+        <div *ngIf="f.categoryId.touched && f.categoryId.invalid" class="text-danger">
+            <div *ngIf="f.categoryId.errors.required">Категория обязательна.</div>
+        </div>
+        <!-- <div *ngIf="isValidated && fruits.errors?.required" class="alert alert-danger mt-2">
+            Категория обязательна
+        </div> -->
+    </div>
+    <!-- https://coryrylan.com/blog/creating-a-dynamic-select-with-angular-forms -->
+    <div>
+        <label>Регион</label>
+        <select class="form-control" formControlName="regionId">
+            <option value="">Выберите регион</option>
+            <option *ngFor="let region of regions | orderBy:'id'" [value]="region.id">{{region.name | cutText : 30}}</option>
+        </select>
+        <!-- <input class="form-control" type="text" formControlName="region" /> -->
+        <div *ngIf="f.regionId.touched && f.regionId.invalid" class="text-danger">
+            <div *ngIf="f.regionId.errors.required">Регион обязателен.</div>
+        </div>        
+    </div>
+    <!-- <div>
+        <label>Название</label>
+        <input class="form-control" type="number" formControlName="name" />
+    </div> -->
+    
+   
+    <!-- <div formGroupName="passengerContacts">
+      <div>
+        <label>Telegram</label>
+        <input type="text" formControlName="telegram" />
+      </div>
+    
+      <div>
+        <label>Whatsapp</label>
+        <input type="text" formControlName="whatsapp" />
+      </div>
+    </div> -->
+    <div class="text-xs-center">
+        <button class="btn btn-secondary m-a-1" (click)="clear()">Очистить</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!newSiteForm.valid">Добавить</button>
+    </div>
+  </form>

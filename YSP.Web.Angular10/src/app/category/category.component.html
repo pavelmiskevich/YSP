@@ -1,0 +1,57 @@
+<div class="navbar navbar-inverse bg-inverse">   
+    <a class="navbar-brand">YSP</a>   
+    <cart-summary></cart-summary>
+</div>
+<top-menu></top-menu>
+<!-- <div class="col-sm-3 p-a-1">
+    <button *ngFor="let cat of categories | slice : 0 : 3" class="btn btn-outline-primary btn-block"
+            [class.active]="cat == selectedCategory" (click)="changeCategory(cat)">
+        {{cat.name.substring(0,18)}}
+    </button>
+</div> -->
+<!-- <div class="col-sm-9 p-a-1">
+    <div *duplicateContent="true">
+        <p zoom="20" style="font-size: 18px;">This text is larger.</p>
+    </div>
+</div> -->
+<div class="col-sm-9 p-a-1">
+    <app-category-list [categories]="categories"></app-category-list>
+    <!-- <div *ngFor="let category of categories" class="card card-outline-primary">
+        <h5 class="card-header">
+            {{category.id}} {{category.name}}
+            <input class="pull-xs-right" type="checkbox" [checked]="category.isActive" [title]="category.isActive" (click)="deactivate(category)" />
+            <span class="pull-xs-right" (click)="deactivate(category)"></span>
+        </h5>        
+        <div class="card-text p-a-1">
+            {{'&nbsp;'}}
+            <button class="btn btn-outline-secondary btn-sm pull-xs-right" [hidden]="!isAuth" (click)="delete(category.id)"> 
+                Удалить
+            </button>
+            <button class="btn btn-outline-secondary btn-sm pull-xs-right" [disabled]="!isAuth" routerLink="/categoryEdit"> 
+                Редактировать
+            </button>
+            <button class="btn btn-outline-primary btn-sm pull-xs-right" [routerLink]="['/site', category.id]"> 
+                Сайты
+            </button>            
+        </div>
+    </div> -->
+    <!-- <div class="form-inline pull-xs-left m-r-1"> 
+        <select class="form-control" [value]="perPage"  
+                (change)="changePageSize($event.target.value)"> 
+            <option value="3">3 на странице</option>
+            <option value="4">4 на странице</option>
+            <option value="6">6 на странице</option>
+            <option value="8">8 на странице</option>
+        </select>
+    </div>
+    <div class="btn-group pull-xs-right"> 
+        <button *counter="let page of pageCount" (click)="changePage(page)"        
+            class="btn btn-outline-primary" [class.active]="page == selectedPage"> 
+                {{page}}
+        </button>
+    </div> -->
+</div>
+<div class="col-sm-3 p-a-1">
+    <app-new-category [categories]="categories"></app-new-category>
+    <!-- <dynamic-list></dynamic-list> -->
+</div>

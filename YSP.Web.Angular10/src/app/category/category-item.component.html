@@ -1,0 +1,20 @@
+<h5 class="card-header">
+    {{category.id}} {{category.name}}
+    <input class="pull-xs-right" type="checkbox" [checked]="category.isActive" [title]="category.isActive" (click)="deactivate(category)" />
+    <span class="pull-xs-right" (click)="deactivate(category)"></span>
+</h5>        
+<div class="card-text p-a-1">
+    {{category.parent ? 'Входит в категорию: ' + category.parent.name : '&nbsp;'}}
+    <button class="btn btn-outline-secondary btn-sm pull-xs-right" [hidden]="!isAuth" (click)="delete(category)"> 
+        Удалить
+    </button>
+    <button class="btn btn-outline-secondary btn-sm pull-xs-right" [disabled]="!isAuth" routerLink="/categoryEdit"> 
+        Редактировать
+    </button>
+    <button class="btn btn-outline-primary btn-sm pull-xs-right" [routerLink]="['/site', category.id]"> 
+        Сайты
+    </button>
+    <!-- <button class="btn btn-outline-primary btn-sm pull-xs-right" routerLink="/query"> 
+        Запросы
+    </button> -->
+</div>
