@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using YSP.Api.Infrastucture;
 using YSP.Core.Models;
 using YSP.Core.Services;
 using YSP.Data;
@@ -15,16 +16,22 @@ namespace YSP.MVC.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly YSPDbContext _context;
+        private readonly IWaitToFinishMemoryCache<byte[]> _cache;
 
-        public CategoryController(ICategoryService categoryService, YSPDbContext context)
+        public CategoryController(ICategoryService categoryService, YSPDbContext context, IWaitToFinishMemoryCache<byte[]> waitToFinishMemoryCache)
         {
             _categoryService = categoryService;
             _context = context;
+            _cache = waitToFinishMemoryCache;
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            //var _cache = new WaitToFinishMemoryCache<byte[]>();
+            //var myAvatar =
+            //    await _cache.GetOrCreate(userId, async () => await _database.GetAvatar(userId));
+
             //var categories = await _categoryService.GetAllWithParentCategory();
             //return View(await _categoryService.GetAllWithParentCategory());
             return View("IndexWithViewComponent");

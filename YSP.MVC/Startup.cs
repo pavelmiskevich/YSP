@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using YSP.Api.Infrastucture;
 using YSP.Core;
 using YSP.Core.Services;
 using YSP.Data;
@@ -70,6 +72,21 @@ namespace YSP.MVC
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IMessageSender, EmailMessageSender>();
             services.AddTransient<IMessageSender, SmsMessageSender>();
+
+            //services.AddScoped<IWaitToFinishMemoryCache<>, WaitToFinishMemoryCache<>>();
+            var allCommandHandler = Assembly.GetExecutingAssembly().GetTypes().Where(t =>
+                t.IsClass &&
+                !t.IsAbstract &&
+                t.IsAssignableFrom(typeof(IWaitToFinishMemoryCache<>)));
+            foreach (var type in allCommandHandler)
+            {
+                var allInterfaces = type.GetInterfaces();
+                var mainInterfaces = allInterfaces.Where(t => t.IsAssignableFrom(typeof(IWaitToFinishMemoryCache<>)));
+                foreach (var itype in mainInterfaces)
+                {
+                    services.AddScoped(itype, type);
+                }
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
